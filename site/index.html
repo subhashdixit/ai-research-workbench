@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Read attributed research-feed excerpts, organize evidence and generate a source-grounded briefing."
+    />
+    <title>AI Research Workbench</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="badge">Subhash Dixit · Applied portfolio</div>
+      <h1>AI Research Workbench</h1>
+      <p>
+        Read attributed research-feed excerpts, organize evidence and generate a
+        source-grounded briefing.
+      </p>
+      <a href="https://github.com/subhashdixit/ai-research-workbench"
+        >Source, concepts and operating guide ↗</a
+      >
+    </header>
+    <main>
+      <section>
+        <h2>1 · Your working material</h2>
+        <p id="source-label" class="muted">
+          Included examples are fictional; imported content stays local until
+          you choose AI generation.
+        </p>
+        <label
+          >Official source<select id="feed">
+            <option value="arxiv-ai">arXiv · Artificial Intelligence</option>
+            <option value="arxiv-ml">arXiv · Machine Learning</option>
+            <option value="openai">OpenAI news</option>
+          </select></label
+        ><button id="load-feed">Fetch current feed excerpts</button>
+        <div id="news-items"></div>
+        <label
+          >Text / PDF file (5 MiB; PDF up to 60 pages)<input
+            id="file"
+            type="file"
+            accept=".txt,.md,.pdf,text/plain,application/pdf" /></label
+        ><label id="context-label"
+          >Document / supplied evidence<textarea
+            id="context"
+            maxlength="40000"
+          ></textarea></label
+        ><button id="example">Reset to fictional / historical example</button>
+      </section>
+      <section>
+        <h2>2 · Choose your task</h2>
+        <label id="question-label"
+          >Question / job requirements<textarea
+            id="question"
+            maxlength="18000"
+          ></textarea></label
+        ><label
+          >Extractive-summary sentence limit (1–12)<input
+            id="sentences"
+            type="number"
+            min="1"
+            max="12"
+            value="5" /></label
+        ><button id="local">Run local tool</button>
+        <details>
+          <summary>Optional Gemini generation · external processing</summary>
+          <p id="provider-status">Checking gateway availability…</p>
+          <p>
+            AI generation sends the current text, question and selected image
+            (if any) through the Render gateway to Google Gemini. Free-tier
+            content may be used by Google to improve its products. Use public or
+            synthetic examples if you do not want external processing. AI
+            answers can be wrong; verify them against the evidence.
+          </p>
+          <label
+            ><input id="consent" type="checkbox" /> I agree to send this content
+            to the gateway and Google Gemini for this request.</label
+          ><button id="generate" disabled>Generate with Gemini</button>
+        </details>
+      </section>
+      <section>
+        <h2>3 · Inspect, edit and export</h2>
+        <p id="result-label"></p>
+        <textarea id="output" aria-label="Editable result"></textarea>
+        <p id="validation"></p>
+        <div id="evidence"></div>
+        <button id="export">Download edited result</button>
+      </section>
+      <p id="status" role="status" aria-live="polite"></p>
+      <details>
+        <summary>How this works · scope and limitations</summary>
+        <p id="method"></p>
+        <p>
+          Local extraction/retrieval is labelled separately from generative AI.
+          Source IDs show where evidence came from; citations do not guarantee
+          that a generated claim is correct. PDFs require selectable text;
+          scanned pages need OCR. No imported document is persisted by this app.
+        </p>
+      </details>
+    </main>
+    <footer>
+      <p>
+        GitHub Pages · HTML / JavaScript · Original project preserved in source.
+      </p>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

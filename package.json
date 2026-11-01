@@ -1,0 +1,16 @@
+{
+  "name": "ai-research-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check site/app.js && node --check site/engine.js",
+    "lint": "eslint site tests",
+    "format": "prettier --check \"site/*.js\" \"site/*.css\" \"site/*.html\" \"tests/*.js\" eslint.config.js"
+  },
+  "devDependencies": {
+    "eslint": "9.39.1",
+    "prettier": "3.6.2"
+  }
+}
