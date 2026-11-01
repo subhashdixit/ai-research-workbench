@@ -1,0 +1,48 @@
+export default [
+  { ignores: ["site/vendor/**"] },
+  {
+    ignores: ["site/vendor/**"],
+    files: ["site/**/*.js", "tests/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: "module",
+      globals: {
+        document: "readonly",
+        window: "readonly",
+        localStorage: "readonly",
+        navigator: "readonly",
+        FileReader: "readonly",
+        DOMParser: "readonly",
+        AbortController: "readonly",
+        Image: "readonly",
+        Uint8Array: "readonly",
+        atob: "readonly",
+        btoa: "readonly",
+        URLSearchParams: "readonly",
+        fetch: "readonly",
+        crypto: "readonly",
+        TextDecoder: "readonly",
+        Worker: "readonly",
+        URL: "readonly",
+        Blob: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+        self: "readonly",
+        console: "readonly",
+        structuredClone: "readonly",
+      },
+    },
+    rules: {
+      "no-undef": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
+      eqeqeq: "error",
+      "no-eval": "error",
+    },
+  },
+];
