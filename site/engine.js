@@ -204,3 +204,12 @@ export function citationCheck(answer, ids) {
     missing: cited.length === 0,
   };
 }
+
+export function unverifiedNumbers(answer, evidence) {
+  const normalized = (text) =>
+    text.replace(/^\s*\d+[.)]\s+/gm, "").replace(/\[S\d+\]/g, "");
+  const numbers = (text) =>
+    [...normalized(text).matchAll(/\b\d+(?:\.\d+)?%?/g)].map((m) => m[0]);
+  const known = new Set(numbers(evidence));
+  return [...new Set(numbers(answer).filter((n) => !known.has(n)))];
+}

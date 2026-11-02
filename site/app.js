@@ -7,8 +7,10 @@ import {
   validateInvoice,
   coverTemplate,
   citationCheck,
+  unverifiedNumbers,
 } from "./engine.js";
 import { $, announce, download } from "./ui.js";
+import { prepareGeneration } from "./model-policy.js";
 import { extractDocument } from "./documents.js";
 const config = await (await fetch("./config.json")).json();
 const example = await (await fetch("./example.json")).json();
@@ -20,16 +22,16 @@ const methods = {
   research:
     "Local mode extracts representative sentences from supplied feed excerpts; AI mode synthesizes them with source IDs.",
   summary:
-    "Local mode copies high-scoring source sentences in original order. Gemini mode may paraphrase; check all numbers and qualifications.",
+    "Local mode copies high-scoring source sentences in original order. Open-model mode may paraphrase; check all numbers and qualifications.",
   invoice:
     "Local mode finds labelled header/total fields heuristically. Correct the JSON before export. An arithmetic match is not proof that an invoice is genuine.",
   multimodal:
-    "Local OCR recognizes visible text. Questions about image meaning require Gemini. This tool does not generate images.",
+    "Local OCR recognizes visible text. Questions about image meaning require the vision model. This tool does not generate images.",
   equity:
     "Local mode uses BM25 to find financial-document excerpts. It is source retrieval, not an investment recommendation.",
   faq: "The included FAQ is historical source material, not current company policy. Local mode retrieves matching original answers.",
   "cover-letter":
-    "Local mode creates an explicitly labelled template using supplied profile lines. Optional Gemini mode rewrites without inventing qualifications.",
+    "Local mode creates an explicitly labelled template using supplied profile lines. Optional Open-model mode rewrites without inventing qualifications.",
 };
 $("method").textContent = methods[config.tool];
 $("local").textContent =
@@ -146,42 +148,36 @@ async function timedFetch(url, options = {}, ms = 65000) {
     clearTimeout(timer);
   }
 }
-async function health() {
-  try {
-    const r = await timedFetch(config.gateway + "/health/ready", {}, 18000);
-    if (!r.ok) throw Error("Gateway unavailable");
-    const h = await r.json();
-    $("provider-status").textContent = h.provider_configured
-      ? `Gateway ready · ${h.model}. A successful real request is still required to verify quota/access.`
-      : "Gateway reachable; Gemini key is not configured. Local tools work; real AI generation is unavailable.";
-    $("generate").disabled = !h.provider_configured;
-  } catch {
-    $("provider-status").textContent =
-      "Gateway not reachable yet (or waking from free-tier sleep). Local tools remain available. Reload to retry.";
-    $("generate").disabled = true;
-  }
+let localWorker = null;
+function stopGeneration() {
+  localWorker?.terminate();
+  localWorker = null;
+  busy = false;
+  $("generate").disabled = false;
+  $("cancel-model").disabled = true;
 }
 async function generate() {
   if (busy) return;
   try {
     if (!$("consent").checked)
-      throw Error("Confirm external processing first.");
+      throw Error(
+        "Confirm the model download first. No account or API key is required.",
+      );
     let context = $("context").value,
       question = $("question").value,
       sources = [];
+    const model = $("model-choice").value;
     if (["equity", "faq"].includes(config.tool)) {
-      sources = retrieve(documents(), boundedText(question, 4000));
+      sources = retrieve(documents(), boundedText(question, 600), 3);
       if (!sources.length)
-        throw Error(
-          "No matching source evidence. Add relevant material first.",
-        );
+        throw Error("No matching evidence. Add relevant material first.");
       evidence(sources);
       context = sources
         .map((s) => `[${s.id}] ${s.title}\n${s.text}`)
         .join("\n\n");
     }
     if (config.tool === "research") {
-      sources = documents();
+      sources = documents().slice(0, 3);
       evidence(sources);
       context = sources
         .map((s) => `[${s.id}] ${s.title}\n${s.text}`)
@@ -189,69 +185,93 @@ async function generate() {
     }
     if (config.tool === "cover-letter") {
       context =
-        "PROFILE FACTS:\n" +
-        boundedText(context, 18000) +
-        "\n\nJOB REQUIREMENTS:\n" +
-        boundedText(question, 18000);
+        "PROFILE FACTS:\n" + context + "\nJOB REQUIREMENTS:\n" + question;
       question =
         "Draft a concise cover letter using only supported profile facts.";
     }
-    if (context.length > 40000 || question.length > 4000)
-      throw Error("AI limits: 40,000 context and 4,000 question characters.");
+    if (context.length > 3500)
+      throw Error(
+        "Shorten the evidence to 3,500 characters for local generation. Local extraction/retrieval still accepts longer documents.",
+      );
+    const request = { tool: config.tool, context, question, model };
+    if (image)
+      request.image = "data:" + image.mimeType + ";base64," + image.data;
+    prepareGeneration(request);
     busy = true;
     $("generate").disabled = true;
+    $("cancel-model").disabled = false;
+    $("output").value = "";
+    $("result-label").textContent = "Local open model · loading / generating";
+    $("validation").textContent = "";
     announce(
-      "Sending your consented content to the gateway and Google Gemini…",
+      "Loading model files from Hugging Face. Your prompt and images stay in this browser.",
     );
-    const payload = { tool: config.tool, context, question, consent: true };
-    if (image) payload.image = image;
-    const response = await timedFetch(config.gateway + "/api/ai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json();
-    if (!response.ok) throw Error(result.error || "Provider request failed.");
-    if (typeof result.answer !== "string")
-      throw Error("Invalid gateway response.");
-    if (config.tool === "invoice") {
-      const checked = validateInvoice(JSON.parse(result.answer));
-      $("output").value = JSON.stringify(checked.fields, null, 2);
-      $("validation").textContent = checked.reconciliation
-        ? `Total reconciliation difference: ${checked.reconciliation.difference}. Check the original image.`
-        : "Missing totals: review all extracted fields.";
-    } else {
-      $("output").value = result.answer;
-      if (sources.length) {
-        const check = citationCheck(
-          result.answer,
-          sources.map((s) => s.id),
+    localWorker = new Worker(
+      new URL("./local-model-worker.js", import.meta.url),
+      { type: "module" },
+    );
+    localWorker.onmessage = (event) => {
+      const data = event.data;
+      if (data.type === "progress") announce(data.text);
+      if (data.type === "token") $("output").value = data.text;
+      if (data.type === "error") {
+        announce(
+          "Local model failed: " +
+            data.text +
+            " Try the compact text model with shorter evidence; local extraction remains available.",
         );
-        $("validation").textContent = check.unknown.length
-          ? "Warning: unrecognized citations " + check.unknown.join(", ")
-          : check.missing
-            ? "Warning: generated answer lacks source IDs. Verify every claim."
-            : "Citation IDs exist in supplied sources. This does not verify each claim.";
+        stopGeneration();
       }
-    }
-    $("result-label").textContent =
-      `Generated by ${result.model} · ${result.finish_reason}. Review all claims and possible truncation.`;
-    announce(
-      "Provider response received. No automatic factual verification is implied.",
-    );
+      if (data.type === "result") {
+        $("output").value = data.answer;
+        $("result-label").textContent =
+          `Generated locally by ${data.model} · ${data.inputTokens} input tokens · maximum ${data.maxNewTokens} new tokens. Output may be incomplete or incorrect.`;
+        if (sources.length) {
+          const check = citationCheck(
+            data.answer,
+            sources.map((s) => s.id),
+          );
+          $("validation").textContent = check.unknown.length
+            ? "Warning: invented/unknown source IDs " + check.unknown.join(", ")
+            : check.missing
+              ? "Warning: no source IDs. Verify every claim against the excerpts."
+              : "Source IDs are recognized; every claim still needs checking.";
+        }
+        if (config.tool === "invoice")
+          $("validation").textContent =
+            "This is model-generated reading, not validated invoice JSON. Use local field extraction for structured export and check all amounts.";
+        const novel = unverifiedNumbers(data.answer, context);
+        if (novel.length)
+          $("validation").textContent +=
+            " WARNING: numbers absent from supplied evidence: " +
+            novel.join(", ") +
+            ". These are unverified; check or remove them.";
+        announce(
+          "Open-model generation completed on this device. No API key or prompt upload was used.",
+        );
+        stopGeneration();
+      }
+    };
+    localWorker.onerror = () => {
+      announce(
+        "Local model worker failed. Check browser memory/network support and try compact text mode.",
+      );
+      stopGeneration();
+    };
+    localWorker.postMessage(request);
   } catch (error) {
-    announce(
-      error.name === "AbortError"
-        ? "Gateway timed out. It may be waking from sleep; try later."
-        : error.message,
-    );
-  } finally {
-    busy = false;
-    health();
+    announce(error.message);
+    stopGeneration();
   }
 }
 $("local").addEventListener("click", local);
-$("example").addEventListener("click", reset);
+$("example").addEventListener("click", () => {
+  stopGeneration();
+  reset();
+});
+$("context").addEventListener("input", () => {
+  newsDocs = [];
+});
 $("generate").addEventListener("click", generate);
 $("file").addEventListener("change", async (event) => {
   try {
@@ -259,7 +279,7 @@ $("file").addEventListener("change", async (event) => {
     $("context").value = await extractDocument(event.target.files[0]);
     newsDocs = [];
     $("source-label").textContent =
-      "Your local document · not sent externally unless you choose Gemini and consent.";
+      "Your local document · processed on this device, including open-model generation.";
     announce(
       "Document text extracted locally. Check reading order before analysis.",
     );
@@ -270,7 +290,7 @@ $("file").addEventListener("change", async (event) => {
 $("export").addEventListener("click", () => {
   try {
     const output = boundedText($("output").value, 100000);
-    if (config.tool === "invoice") {
+    if (config.tool === "invoice" && output.trim().startsWith("{")) {
       const checked = validateInvoice(JSON.parse(output));
       download(
         "invoice-reviewed.json",
@@ -354,7 +374,7 @@ if ($("image")) {
       $("preview").src = previewURL;
       $("preview").hidden = false;
       announce(
-        "Image loaded locally. OCR is local; Gemini sends this image externally only after consent.",
+        "Image loaded locally. OCR is local; the vision model processes the image locally.",
       );
     } catch (error) {
       image = null;
@@ -397,4 +417,11 @@ if ($("image")) {
   });
 }
 reset();
-health();
+$("provider-status").textContent =
+  "Keyless open models run on your device. The first download is roughly 140 MB (compact), 515 MB (standard) or 260 MB (vision), plus the runtime. CPU generation may take time.";
+$("cancel-model").addEventListener("click", () => {
+  stopGeneration();
+  announce(
+    "Local generation stopped. Model files may remain in browser cache.",
+  );
+});

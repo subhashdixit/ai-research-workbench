@@ -1,0 +1,12 @@
+{
+  "vendor/pdfjs/LICENSE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+  "vendor/pdfjs/pdf.mjs": "57456c8e0c81e46be31174b499ef77f2b9f5ee46d04412ba627320a36755d4c2",
+  "vendor/pdfjs/pdf.worker.mjs": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+  "vendor/ai/ort-wasm-simd-threaded.asyncify.mjs": "0966b6105cd936744498aa60df7a22cbd47af3374dbc64a9ab561c08a71e3611",
+  "vendor/ai/LOCAL-CHANGES.txt": "6e92fed06c93141a0092cec80d6db63c7d794dacd60f83284eee26ad19c2c5fa",
+  "vendor/ai/ort-wasm-simd-threaded.jspi.mjs": "6b37a3974dbd96a752fdc1805e1bdc2dca3ead7e380703c092240c2352c71dbf",
+  "vendor/ai/TRANSFORMERS-LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "vendor/ai/ort-wasm-simd-threaded.jspi.wasm": "173146c55eb8c7e01f8be3f7b7376fbde14118d91607583ab7caf4feac98e59c",
+  "vendor/ai/ONNX-RUNTIME-LICENSE": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+  "vendor/ai/ort-wasm-simd-threaded.asyncify.wasm": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082"
+}

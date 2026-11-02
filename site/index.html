@@ -27,7 +27,7 @@
         <h2>1 · Your working material</h2>
         <p id="source-label" class="muted">
           Included examples are fictional; imported content stays local until
-          you choose AI generation.
+          you choose local model generation.
         </p>
         <label
           >Official source<select id="feed">
@@ -65,19 +65,29 @@
             value="5" /></label
         ><button id="local">Run local tool</button>
         <details>
-          <summary>Optional Gemini generation · external processing</summary>
-          <p id="provider-status">Checking gateway availability…</p>
+          <summary>Generate with a free open model · no API key</summary>
+          <p id="provider-status"></p>
           <p>
-            AI generation sends the current text, question and selected image
-            (if any) through the Render gateway to Google Gemini. Free-tier
-            content may be used by Google to improve its products. Use public or
-            synthetic examples if you do not want external processing. AI
-            answers can be wrong; verify them against the evidence.
+            Download model weights from Hugging Face, then run inference on this
+            device in a worker. Model-file requests expose normal network
+            metadata; your prompt/image is not uploaded. A small model can
+            invent facts and may fail to follow instructions. Check every
+            result.
           </p>
           <label
-            ><input id="consent" type="checkbox" /> I agree to send this content
-            to the gateway and Google Gemini for this request.</label
-          ><button id="generate" disabled>Generate with Gemini</button>
+            >Model<select id="model-choice">
+              <option value="compact">
+                Compact text · SmolLM2 135M (~140 MB)
+              </option>
+              <option value="standard" selected>
+                Larger text · Qwen2.5 0.5B (~515 MB)
+              </option>
+            </select></label
+          ><label
+            ><input id="consent" type="checkbox" /> Download the selected open
+            model to run locally (no account or API key).</label
+          ><button id="generate">Generate locally with open model</button
+          ><button id="cancel-model" disabled>Stop local model</button>
         </details>
       </section>
       <section>

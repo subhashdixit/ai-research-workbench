@@ -68,3 +68,11 @@ test("input limits are explicit", () => {
   assert.throws(() => boundedText("abc", 2));
   assert.throws(() => retrieve([], " "));
 });
+
+import { unverifiedNumbers } from "../site/engine.js";
+test("generated numbers absent from evidence are surfaced", () => {
+  assert.deepEqual(
+    unverifiedNumbers("1. Revenue 120, grew 40%. [S1]", "Revenue 100 to 120."),
+    ["40%"],
+  );
+});

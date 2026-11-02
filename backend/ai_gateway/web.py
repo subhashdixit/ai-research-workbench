@@ -141,7 +141,7 @@ def create_app(config=None):
                 headers={"User-Agent": "PortfolioResearchReader/1.0"},
             ) as response:
                 response.raise_for_status()
-                content = response.raw.read(1024 * 1024 + 1)
+                content = response.raw.read(1024 * 1024 + 1, decode_content=True)
             items = parse_feed(content, feed)
         except (requests.RequestException, ValueError) as exc:
             raise ProviderUnavailable(
