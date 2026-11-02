@@ -1,13 +1,18 @@
-# Historical prototype dependencies: preserved for reference.
-# Supported maintained-release installation and exact locks: DEPENDENCIES.md.
-langChain  #Used for creating structured language processing pipelines.
-beautifulsoup4 #Used for scraping the Google News webpage.
-requests #Used for making HTTP requests to fetch webpage content.
-langchain-community
-os-sys
-openai
-langchain-openai
-playwright
-html2text
-pandas 
-openpyxl
+# Supported local environment: Python 3.11.17.
+# Install with: python -m pip install -r requirements.txt
+# Exact complete environment. Keep in sync with backend/requirements.lock.txt.
+blinker==1.9.0
+certifi==2026.10.23
+charset-normalizer==3.5.2
+click==8.5.0
+defusedxml==0.7.1
+flask==3.1.3
+gunicorn==26.2.0
+idna==3.20
+itsdangerous==2.2.0
+jinja2==3.1.6
+markupsafe==3.0.4
+pillow==13.0.0
+requests==2.34.2
+urllib3==2.8.0
+werkzeug==3.1.9

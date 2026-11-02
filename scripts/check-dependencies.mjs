@@ -124,7 +124,7 @@ if (manifest.python) {
       for (const line of read(source.path).split(/\r?\n/)) {
         const clean = line.split("#")[0].trim();
         if (!clean || clean.startsWith("-r ")) continue;
-        const match = clean.match(/^([\w.-]+)==([^\s;]+)$/);
+        const match = clean.match(/^([\w.-]+)==([^\s;]+)(?:\s*;.*)?$/);
         assert.ok(
           match,
           `Use exact input requirements in ${source.path}: ${clean}`,

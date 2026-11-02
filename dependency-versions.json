@@ -481,7 +481,11 @@
         "sources": [
           {
             "path": "backend/requirements.txt",
-            "sha256": "435e1c32e649250f8e17d15abfa3fe44b5d150040a9d01cade86e8ea2f8bb1a5"
+            "sha256": "3dd76e8fcd61efd378214c358e405d1134d4f875888bbb3ac277825f47a317c5"
+          },
+          {
+            "path": "requirements.txt",
+            "sha256": "823d5b5b9cf119dc91c2c3b43212a05e78bf6fa0c452b119b872352d061475c2"
           }
         ],
         "resolved": [
@@ -584,11 +588,11 @@
         "sources": [
           {
             "path": "backend/requirements.txt",
-            "sha256": "435e1c32e649250f8e17d15abfa3fe44b5d150040a9d01cade86e8ea2f8bb1a5"
+            "sha256": "3dd76e8fcd61efd378214c358e405d1134d4f875888bbb3ac277825f47a317c5"
           },
           {
             "path": "backend/requirements-dev.txt",
-            "sha256": "2f8052e44dac6f609f0b1fec3730f8ab430b1229197ff0843501b7ffff25458b"
+            "sha256": "0e2a6c9670f066abeece29ae7047c4dbbeea7b5fdf3e1b451feff8a04c461b43"
           }
         ],
         "resolved": [

@@ -236,3 +236,7 @@ The supported lockfiles, runtime files and asset identities describe the maintai
 Exact versions prevent silent dependency upgrades. Operating-system libraries, CPU architecture, browser features and native-wheel availability can still affect execution or floating-point results. Use the pinned interpreter, a compatible supported system and the checks above. Unsupported wheel platforms fail explicitly instead of silently compiling against unrecorded build dependencies.
 
 External news/search APIs supply changing data independently of local package versions. Historical fixture data and model artifacts retain their repository identities. Future upgrades should change the exact version, corresponding lock/manifest and verification together in a reviewed PR.
+
+## Standard requirements.txt entry point
+
+The root `requirements.txt` explicitly lists every distribution in the production lock with exact versions and platform markers. `python -m pip install -r requirements.txt` installs that environment. The hash-locked files remain authoritative for artifact-integrity verification; CI verifies requirements inputs against those locked versions. Original prototype inputs are preserved as `archive/prototype-requirements.in` where present.
