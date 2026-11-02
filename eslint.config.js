@@ -2,11 +2,13 @@ export default [
   { ignores: ["site/vendor/**"] },
   {
     ignores: ["site/vendor/**"],
-    files: ["site/**/*.js", "tests/**/*.js"],
+    files: ["site/**/*.js", "tests/**/*.js", "scripts/**/*.mjs"],
     languageOptions: {
       ecmaVersion: 2023,
       sourceType: "module",
       globals: {
+        AbortSignal: "readonly",
+        process: "readonly",
         document: "readonly",
         window: "readonly",
         localStorage: "readonly",

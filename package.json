@@ -6,11 +6,17 @@
   "scripts": {
     "test": "node --test tests/*.test.js",
     "check": "node --check site/app.js && node --check site/engine.js",
-    "lint": "eslint site tests",
-    "format": "prettier --check \"site/*.js\" \"site/*.css\" \"site/*.html\" \"tests/*.js\" eslint.config.js"
+    "lint": "eslint site tests scripts",
+    "format": "prettier --check \"site/*.js\" \"site/*.css\" \"site/*.html\" \"tests/*.js\" eslint.config.js \"scripts/*.mjs\"",
+    "check:dependencies": "node scripts/check-dependencies.mjs"
   },
   "devDependencies": {
     "eslint": "9.39.1",
     "prettier": "3.6.2"
-  }
+  },
+  "engines": {
+    "node": "22.23.4",
+    "npm": "10.9.9"
+  },
+  "packageManager": "npm@10.9.9"
 }
