@@ -225,3 +225,34 @@ def test_configured_model_identifier_cannot_change_the_provider_url():
     client = GeminiClient("")
     with pytest.raises(ProviderUnavailable):
         client.generate("summary", [{"text": "Synthetic"}])
+
+
+def test_compressed_news_is_decoded_before_bounded_xml_parse(client, monkeypatch):
+    import gzip
+    import io
+    from urllib3.response import HTTPResponse
+
+    xml = b"<rss><channel><item><title>Synthetic research item</title><link>https://example.org/paper</link><description>Public excerpt</description></item></channel></rss>"
+
+    class CompressedResponse:
+        raw = HTTPResponse(
+            body=io.BytesIO(gzip.compress(xml)),
+            headers={"Content-Encoding": "gzip"},
+            preload_content=False,
+        )
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            self.raw.close()
+
+        def raise_for_status(self):
+            return None
+
+    monkeypatch.setattr(
+        "ai_gateway.web.requests.get", lambda *_args, **_kwargs: CompressedResponse()
+    )
+    response = client.get("/api/news?feed=openai")
+    assert response.status_code == 200
+    assert response.json["items"][0]["title"] == "Synthetic research item"
