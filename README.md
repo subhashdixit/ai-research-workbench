@@ -1,5 +1,8 @@
 # AI Research Workbench
 
+**Reproducible versions:** [Dependency versions and exact setup](DEPENDENCIES.md).
+
+
 [Open the application](https://subhashdixit.github.io/ai-research-workbench/) · [Report an issue](https://github.com/subhashdixit/ai-research-workbench/issues)
 
 Read attributed research-feed excerpts, organize evidence and generate a source-grounded briefing.
@@ -120,7 +123,7 @@ Requires Python 3.11+. From the repository root:
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r backend/requirements-dev.txt
+python -m pip install --require-hashes --only-binary=:all: -r backend/requirements-dev.lock.txt
 python -m pytest -q backend
 python -m black --check backend
 python -m pylint --rcfile backend/pyproject.toml backend/ai_gateway backend/wsgi.py

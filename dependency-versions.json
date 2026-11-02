@@ -1,0 +1,836 @@
+{
+  "schema": 1,
+  "repository": "subhashdixit/ai-research-workbench",
+  "reviewed_on": "2026-11-02",
+  "scope": "Maintained Pages application, its development tools, and active training/backend environments. Historical prototype lists are preserved separately from the supported install path.",
+  "runtimes": {
+    "node": "22.23.4",
+    "npm": "10.9.9",
+    "python": "3.11.17"
+  },
+  "npm": {
+    "lockfile": "package-lock.json",
+    "lockfile_sha256": "a7a463828aa829b56e024e42a4ae9127848b57f6c84bc5aa1c6bf8b94d3b8799",
+    "resolved": [
+      {
+        "path": "node_modules/@eslint-community/eslint-utils",
+        "name": "@eslint-community/eslint-utils",
+        "version": "4.10.1"
+      },
+      {
+        "path": "node_modules/@eslint-community/eslint-utils/node_modules/eslint-visitor-keys",
+        "name": "eslint-visitor-keys",
+        "version": "3.4.3"
+      },
+      {
+        "path": "node_modules/@eslint-community/regexpp",
+        "name": "@eslint-community/regexpp",
+        "version": "4.12.2"
+      },
+      {
+        "path": "node_modules/@eslint/config-array",
+        "name": "@eslint/config-array",
+        "version": "0.21.2"
+      },
+      {
+        "path": "node_modules/@eslint/config-helpers",
+        "name": "@eslint/config-helpers",
+        "version": "0.4.2"
+      },
+      {
+        "path": "node_modules/@eslint/core",
+        "name": "@eslint/core",
+        "version": "0.17.0"
+      },
+      {
+        "path": "node_modules/@eslint/eslintrc",
+        "name": "@eslint/eslintrc",
+        "version": "3.3.7"
+      },
+      {
+        "path": "node_modules/@eslint/js",
+        "name": "@eslint/js",
+        "version": "9.39.1"
+      },
+      {
+        "path": "node_modules/@eslint/object-schema",
+        "name": "@eslint/object-schema",
+        "version": "2.1.7"
+      },
+      {
+        "path": "node_modules/@eslint/plugin-kit",
+        "name": "@eslint/plugin-kit",
+        "version": "0.4.1"
+      },
+      {
+        "path": "node_modules/@humanfs/core",
+        "name": "@humanfs/core",
+        "version": "0.19.2"
+      },
+      {
+        "path": "node_modules/@humanfs/node",
+        "name": "@humanfs/node",
+        "version": "0.16.8"
+      },
+      {
+        "path": "node_modules/@humanfs/types",
+        "name": "@humanfs/types",
+        "version": "0.15.0"
+      },
+      {
+        "path": "node_modules/@humanwhocodes/module-importer",
+        "name": "@humanwhocodes/module-importer",
+        "version": "1.0.1"
+      },
+      {
+        "path": "node_modules/@humanwhocodes/retry",
+        "name": "@humanwhocodes/retry",
+        "version": "0.4.3"
+      },
+      {
+        "path": "node_modules/@types/estree",
+        "name": "@types/estree",
+        "version": "1.0.10"
+      },
+      {
+        "path": "node_modules/@types/json-schema",
+        "name": "@types/json-schema",
+        "version": "7.0.15"
+      },
+      {
+        "path": "node_modules/acorn",
+        "name": "acorn",
+        "version": "8.19.0"
+      },
+      {
+        "path": "node_modules/acorn-jsx",
+        "name": "acorn-jsx",
+        "version": "5.3.2"
+      },
+      {
+        "path": "node_modules/ajv",
+        "name": "ajv",
+        "version": "6.15.0"
+      },
+      {
+        "path": "node_modules/ansi-styles",
+        "name": "ansi-styles",
+        "version": "4.3.0"
+      },
+      {
+        "path": "node_modules/argparse",
+        "name": "argparse",
+        "version": "2.0.1"
+      },
+      {
+        "path": "node_modules/balanced-match",
+        "name": "balanced-match",
+        "version": "1.0.2"
+      },
+      {
+        "path": "node_modules/brace-expansion",
+        "name": "brace-expansion",
+        "version": "1.1.21"
+      },
+      {
+        "path": "node_modules/callsites",
+        "name": "callsites",
+        "version": "3.1.0"
+      },
+      {
+        "path": "node_modules/chalk",
+        "name": "chalk",
+        "version": "4.1.2"
+      },
+      {
+        "path": "node_modules/color-convert",
+        "name": "color-convert",
+        "version": "2.0.1"
+      },
+      {
+        "path": "node_modules/color-name",
+        "name": "color-name",
+        "version": "1.1.4"
+      },
+      {
+        "path": "node_modules/concat-map",
+        "name": "concat-map",
+        "version": "0.0.1"
+      },
+      {
+        "path": "node_modules/cross-spawn",
+        "name": "cross-spawn",
+        "version": "7.0.6"
+      },
+      {
+        "path": "node_modules/debug",
+        "name": "debug",
+        "version": "4.4.3"
+      },
+      {
+        "path": "node_modules/deep-is",
+        "name": "deep-is",
+        "version": "0.1.4"
+      },
+      {
+        "path": "node_modules/escape-string-regexp",
+        "name": "escape-string-regexp",
+        "version": "4.0.0"
+      },
+      {
+        "path": "node_modules/eslint",
+        "name": "eslint",
+        "version": "9.39.1"
+      },
+      {
+        "path": "node_modules/eslint-scope",
+        "name": "eslint-scope",
+        "version": "8.4.0"
+      },
+      {
+        "path": "node_modules/eslint-visitor-keys",
+        "name": "eslint-visitor-keys",
+        "version": "4.2.1"
+      },
+      {
+        "path": "node_modules/espree",
+        "name": "espree",
+        "version": "10.4.0"
+      },
+      {
+        "path": "node_modules/esquery",
+        "name": "esquery",
+        "version": "1.7.0"
+      },
+      {
+        "path": "node_modules/esrecurse",
+        "name": "esrecurse",
+        "version": "4.3.0"
+      },
+      {
+        "path": "node_modules/estraverse",
+        "name": "estraverse",
+        "version": "5.3.0"
+      },
+      {
+        "path": "node_modules/esutils",
+        "name": "esutils",
+        "version": "2.0.3"
+      },
+      {
+        "path": "node_modules/fast-deep-equal",
+        "name": "fast-deep-equal",
+        "version": "3.1.3"
+      },
+      {
+        "path": "node_modules/fast-json-stable-stringify",
+        "name": "fast-json-stable-stringify",
+        "version": "2.1.0"
+      },
+      {
+        "path": "node_modules/fast-levenshtein",
+        "name": "fast-levenshtein",
+        "version": "2.0.6"
+      },
+      {
+        "path": "node_modules/file-entry-cache",
+        "name": "file-entry-cache",
+        "version": "8.0.0"
+      },
+      {
+        "path": "node_modules/find-up",
+        "name": "find-up",
+        "version": "5.0.0"
+      },
+      {
+        "path": "node_modules/flat-cache",
+        "name": "flat-cache",
+        "version": "4.0.1"
+      },
+      {
+        "path": "node_modules/flatted",
+        "name": "flatted",
+        "version": "3.4.4"
+      },
+      {
+        "path": "node_modules/glob-parent",
+        "name": "glob-parent",
+        "version": "6.0.2"
+      },
+      {
+        "path": "node_modules/globals",
+        "name": "globals",
+        "version": "14.0.0"
+      },
+      {
+        "path": "node_modules/has-flag",
+        "name": "has-flag",
+        "version": "4.0.0"
+      },
+      {
+        "path": "node_modules/ignore",
+        "name": "ignore",
+        "version": "5.3.2"
+      },
+      {
+        "path": "node_modules/import-fresh",
+        "name": "import-fresh",
+        "version": "3.3.1"
+      },
+      {
+        "path": "node_modules/imurmurhash",
+        "name": "imurmurhash",
+        "version": "0.1.4"
+      },
+      {
+        "path": "node_modules/is-extglob",
+        "name": "is-extglob",
+        "version": "2.1.1"
+      },
+      {
+        "path": "node_modules/is-glob",
+        "name": "is-glob",
+        "version": "4.0.3"
+      },
+      {
+        "path": "node_modules/isexe",
+        "name": "isexe",
+        "version": "2.0.0"
+      },
+      {
+        "path": "node_modules/js-yaml",
+        "name": "js-yaml",
+        "version": "4.3.2"
+      },
+      {
+        "path": "node_modules/json-buffer",
+        "name": "json-buffer",
+        "version": "3.0.1"
+      },
+      {
+        "path": "node_modules/json-schema-traverse",
+        "name": "json-schema-traverse",
+        "version": "0.4.1"
+      },
+      {
+        "path": "node_modules/json-stable-stringify-without-jsonify",
+        "name": "json-stable-stringify-without-jsonify",
+        "version": "1.0.1"
+      },
+      {
+        "path": "node_modules/keyv",
+        "name": "keyv",
+        "version": "4.5.4"
+      },
+      {
+        "path": "node_modules/levn",
+        "name": "levn",
+        "version": "0.4.1"
+      },
+      {
+        "path": "node_modules/locate-path",
+        "name": "locate-path",
+        "version": "6.0.0"
+      },
+      {
+        "path": "node_modules/lodash.merge",
+        "name": "lodash.merge",
+        "version": "4.6.2"
+      },
+      {
+        "path": "node_modules/minimatch",
+        "name": "minimatch",
+        "version": "3.1.5"
+      },
+      {
+        "path": "node_modules/ms",
+        "name": "ms",
+        "version": "2.1.3"
+      },
+      {
+        "path": "node_modules/natural-compare",
+        "name": "natural-compare",
+        "version": "1.4.0"
+      },
+      {
+        "path": "node_modules/optionator",
+        "name": "optionator",
+        "version": "0.9.4"
+      },
+      {
+        "path": "node_modules/p-limit",
+        "name": "p-limit",
+        "version": "3.1.0"
+      },
+      {
+        "path": "node_modules/p-locate",
+        "name": "p-locate",
+        "version": "5.0.0"
+      },
+      {
+        "path": "node_modules/parent-module",
+        "name": "parent-module",
+        "version": "1.0.1"
+      },
+      {
+        "path": "node_modules/path-exists",
+        "name": "path-exists",
+        "version": "4.0.0"
+      },
+      {
+        "path": "node_modules/path-key",
+        "name": "path-key",
+        "version": "3.1.1"
+      },
+      {
+        "path": "node_modules/prelude-ls",
+        "name": "prelude-ls",
+        "version": "1.2.1"
+      },
+      {
+        "path": "node_modules/prettier",
+        "name": "prettier",
+        "version": "3.6.2"
+      },
+      {
+        "path": "node_modules/punycode",
+        "name": "punycode",
+        "version": "2.3.1"
+      },
+      {
+        "path": "node_modules/resolve-from",
+        "name": "resolve-from",
+        "version": "4.0.0"
+      },
+      {
+        "path": "node_modules/shebang-command",
+        "name": "shebang-command",
+        "version": "2.0.0"
+      },
+      {
+        "path": "node_modules/shebang-regex",
+        "name": "shebang-regex",
+        "version": "3.0.0"
+      },
+      {
+        "path": "node_modules/strip-json-comments",
+        "name": "strip-json-comments",
+        "version": "3.1.1"
+      },
+      {
+        "path": "node_modules/supports-color",
+        "name": "supports-color",
+        "version": "7.2.0"
+      },
+      {
+        "path": "node_modules/type-check",
+        "name": "type-check",
+        "version": "0.4.0"
+      },
+      {
+        "path": "node_modules/uri-js",
+        "name": "uri-js",
+        "version": "4.4.1"
+      },
+      {
+        "path": "node_modules/which",
+        "name": "which",
+        "version": "2.0.2"
+      },
+      {
+        "path": "node_modules/word-wrap",
+        "name": "word-wrap",
+        "version": "1.2.5"
+      },
+      {
+        "path": "node_modules/yocto-queue",
+        "name": "yocto-queue",
+        "version": "0.1.0"
+      }
+    ]
+  },
+  "python": {
+    "lock_generator": {
+      "name": "uv",
+      "version": "0.13.6"
+    },
+    "environments": [
+      {
+        "role": "installer",
+        "lockfile": "requirements-installer.lock.txt",
+        "sha256": "f93ae196a93f06b93195236d9bfc1a3a08343cd2b25e4a92f504ac975f520d30",
+        "sources": [
+          {
+            "path": "requirements-installer.in",
+            "sha256": "0b897bd2e718a14e8883d8c162f3f2d97b62dba92d5dbd99d6f71abaa6c7901a"
+          }
+        ],
+        "resolved": [
+          {
+            "name": "pip",
+            "version": "26.2.2",
+            "marker": "",
+            "hashes": 2
+          }
+        ]
+      },
+      {
+        "role": "production",
+        "lockfile": "backend/requirements.lock.txt",
+        "sha256": "4b5d16ae7877ed8bb08ff93acc504a669e47eadeaf824237dd256b5d9fcb1b52",
+        "sources": [
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "435e1c32e649250f8e17d15abfa3fe44b5d150040a9d01cade86e8ea2f8bb1a5"
+          }
+        ],
+        "resolved": [
+          {
+            "name": "blinker",
+            "version": "1.9.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "certifi",
+            "version": "2026.10.23",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "charset-normalizer",
+            "version": "3.5.2",
+            "marker": "",
+            "hashes": 172
+          },
+          {
+            "name": "click",
+            "version": "8.5.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "defusedxml",
+            "version": "0.7.1",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "flask",
+            "version": "3.1.3",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "gunicorn",
+            "version": "26.2.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "idna",
+            "version": "3.20",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "itsdangerous",
+            "version": "2.2.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "jinja2",
+            "version": "3.1.6",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "markupsafe",
+            "version": "3.0.4",
+            "marker": "",
+            "hashes": 151
+          },
+          {
+            "name": "pillow",
+            "version": "13.0.0",
+            "marker": "",
+            "hashes": 83
+          },
+          {
+            "name": "requests",
+            "version": "2.34.2",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "urllib3",
+            "version": "2.8.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "werkzeug",
+            "version": "3.1.9",
+            "marker": "",
+            "hashes": 2
+          }
+        ]
+      },
+      {
+        "role": "development",
+        "lockfile": "backend/requirements-dev.lock.txt",
+        "sha256": "d86e04fe3cf5e4f4e7e5a95c3b669e61dba191586d7b01a9ef2af1b9392a33e9",
+        "sources": [
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "435e1c32e649250f8e17d15abfa3fe44b5d150040a9d01cade86e8ea2f8bb1a5"
+          },
+          {
+            "path": "backend/requirements-dev.txt",
+            "sha256": "2f8052e44dac6f609f0b1fec3730f8ab430b1229197ff0843501b7ffff25458b"
+          }
+        ],
+        "resolved": [
+          {
+            "name": "astroid",
+            "version": "3.3.11",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "black",
+            "version": "25.1.0",
+            "marker": "",
+            "hashes": 22
+          },
+          {
+            "name": "blinker",
+            "version": "1.9.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "certifi",
+            "version": "2026.10.23",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "charset-normalizer",
+            "version": "3.5.2",
+            "marker": "",
+            "hashes": 172
+          },
+          {
+            "name": "click",
+            "version": "8.5.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "colorama",
+            "version": "0.4.6",
+            "marker": "; sys_platform == 'win32'",
+            "hashes": 2
+          },
+          {
+            "name": "defusedxml",
+            "version": "0.7.1",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "dill",
+            "version": "0.4.1",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "flask",
+            "version": "3.1.3",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "gunicorn",
+            "version": "26.2.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "idna",
+            "version": "3.20",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "iniconfig",
+            "version": "2.3.1",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "isort",
+            "version": "6.1.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "itsdangerous",
+            "version": "2.2.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "jinja2",
+            "version": "3.1.6",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "markupsafe",
+            "version": "3.0.4",
+            "marker": "",
+            "hashes": 151
+          },
+          {
+            "name": "mccabe",
+            "version": "0.7.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "mypy-extensions",
+            "version": "1.1.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "packaging",
+            "version": "26.3",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pathspec",
+            "version": "1.1.1",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pillow",
+            "version": "13.0.0",
+            "marker": "",
+            "hashes": 83
+          },
+          {
+            "name": "platformdirs",
+            "version": "4.14.3",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pluggy",
+            "version": "1.7.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pygments",
+            "version": "2.21.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pylint",
+            "version": "3.3.8",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "pytest",
+            "version": "8.4.2",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "requests",
+            "version": "2.34.2",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "tomlkit",
+            "version": "0.15.2",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "urllib3",
+            "version": "2.8.0",
+            "marker": "",
+            "hashes": 2
+          },
+          {
+            "name": "werkzeug",
+            "version": "3.1.9",
+            "marker": "",
+            "hashes": 2
+          }
+        ]
+      }
+    ]
+  },
+  "browser": {
+    "libraries": [
+      {
+        "name": "@huggingface/transformers",
+        "version": "4.3.2",
+        "delivery": "remote-module",
+        "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/transformers.min.js",
+        "sha256": "8b5a3171f8876bab2b1820a7d65eb87628e3d30bb5ea85b9dd398e76eb34decb",
+        "imported_by": "site/local-model-worker.js",
+        "role": "Pinned browser inference distribution; bundled components travel with this exact artifact."
+      },
+      {
+        "name": "onnxruntime-web",
+        "version": "1.31.0-dev.20260914-8d85527a0",
+        "delivery": "vendored",
+        "role": "WASM CPU runtime and async loaders",
+        "location": "site/vendor/ai"
+      },
+      {
+        "name": "pdfjs-dist",
+        "version": "6.4.299",
+        "delivery": "vendored",
+        "role": "Local selectable-text PDF extraction",
+        "location": "site/vendor/pdfjs"
+      }
+    ],
+    "native_apis_note": "HTML/CSS/ES modules and browser APIs are supplied by the browser; a compatible modern browser is required.",
+    "vendor_metadata": "site/vendor/VERSIONS.json",
+    "integrity_manifest": {
+      "path": "site/vendor-manifest.json",
+      "sha256": "f44d877fb67d84de5d9cd735fd752db57595adf20dbf394c163e9ea021b4ca39"
+    },
+    "model_catalog": "site/model-policy.js",
+    "models": {
+      "compact": {
+        "id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+        "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+        "bytes": 137147981
+      },
+      "standard": {
+        "id": "onnx-community/Qwen2.5-0.5B-Instruct",
+        "revision": "22942cb7d7ba4cc81bb4673549ca4d4614469b5e",
+        "bytes": 512096557
+      },
+      "vision": {
+        "id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+        "revision": "7e3e67edbbed1bf9888184d9df282b700a323964",
+        "bytes": 259855437
+      }
+    }
+  }
+}

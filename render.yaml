@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     autoDeployTrigger: checksPass
-    buildCommand: pip install -r backend/requirements.txt
+    buildCommand: python -m pip install --require-hashes --only-binary=:all: -r requirements-installer.lock.txt && python -m pip install --require-hashes --only-binary=:all: -r backend/requirements.lock.txt
     startCommand: gunicorn --chdir backend --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 75 wsgi:app
     healthCheckPath: /health/ready
     envVars:

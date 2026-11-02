@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "libraries": [
+    {
+      "name": "@huggingface/transformers",
+      "version": "4.3.2",
+      "delivery": "remote-module",
+      "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/transformers.min.js",
+      "sha256": "8b5a3171f8876bab2b1820a7d65eb87628e3d30bb5ea85b9dd398e76eb34decb",
+      "imported_by": "site/local-model-worker.js",
+      "role": "Pinned browser inference distribution; bundled components travel with this exact artifact."
+    },
+    {
+      "name": "onnxruntime-web",
+      "version": "1.31.0-dev.20260914-8d85527a0",
+      "delivery": "vendored",
+      "role": "WASM CPU runtime and async loaders",
+      "location": "site/vendor/ai"
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "6.4.299",
+      "delivery": "vendored",
+      "role": "Local selectable-text PDF extraction",
+      "location": "site/vendor/pdfjs"
+    }
+  ]
+}
