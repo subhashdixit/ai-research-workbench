@@ -137,3 +137,16 @@ Create a Render Blueprint from this repository using `render.yaml`, verify the p
 `GET /api/news?feed=arxiv-ai` (also arxiv-ml/openai) fetches only hardcoded official feeds. No user-supplied URL is fetched. XML entity expansion is disabled, response size is bounded, source markup is stripped, unsafe links are rejected, and cache expires after ten minutes.
 
 Backend tests use a fake transport to check validation, consent, response redaction, CORS, image bounds, unsafe feeds and quota enforcement. Mocked tests do not prove the live Google model works; that requires a real configured provider request.
+
+## Local dependency installation
+
+`requirements.txt` lists the complete supported production environment with exact `package==version` pins, including transitive dependencies. Use Python 3.11.17 in a fresh virtual environment:
+
+```bash
+python3.11 -m venv .venv
+# Activate: source .venv/bin/activate (Windows: .venv\Scripts\activate)
+python -m pip install -r requirements.txt
+python -m pip check
+```
+
+For hash-verified installation and separate development environments, follow [DEPENDENCIES.md](DEPENDENCIES.md). Original prototype requirements are preserved at `archive/prototype-requirements.in` where present; they are not the supported install command.

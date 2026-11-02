@@ -1,0 +1,13 @@
+# Historical prototype dependencies: preserved for reference.
+# Supported maintained-release installation and exact locks: DEPENDENCIES.md.
+langChain  #Used for creating structured language processing pipelines.
+beautifulsoup4 #Used for scraping the Google News webpage.
+requests #Used for making HTTP requests to fetch webpage content.
+langchain-community
+os-sys
+openai
+langchain-openai
+playwright
+html2text
+pandas
+openpyxl
